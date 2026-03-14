@@ -12,19 +12,10 @@
 // - SDA on D2
 // - SCL on D3
 &pinctrl {
-    i2c0_default {
-        group1 {
-            bias-pull-up;
-        }
-    }
-    i2c0_sleep {
-        group1 {
-            bias-pull-up;
-        }
-    }
     /* configuration for i2c0 device, default state */
     i2c0_default: i2c0_default {
         group1 {
+            bias-pull-up;
             psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
                     <NRF_PSEL(TWIM_SCL, 0, 20)>;
         };
@@ -32,6 +23,7 @@
     /* configuration for i2c0 device, sleep state */
     i2c0_sleep: i2c0_sleep {
         group1 {
+            bias-pull-up;
             psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
                     <NRF_PSEL(TWIM_SCL, 0, 20)>;
             low-power-enable;
