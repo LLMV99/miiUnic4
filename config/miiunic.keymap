@@ -116,10 +116,10 @@
         colemak_layer {
             display-name = "Colemak";
             bindings = <
-         &kp TAB         &kp Q   &kp W   &kp F     &kp P     &kp B                                 &kp J        &kp L     &kp U      &kp Y    &ud_sqt  &kp RC(RA(F13)) 
-         &kp LCTRL       &kp A   &kp R   &kp S     &kp T     &kp G                                 &kp M        &kp N     &kp E      &kp I    &kp O    &kp BSPC
-         &mt LSHFT LBRC  &kp Z   &kp X   &kp C     &kp D     &kp V                                 &kp K        &kp H     &kp COMMA  &kp DOT  &kp DEL  &mt RSHFT RBRC
-                                         &kp LALT  &lthp SYM ESC  &kp SPACE &kp C_MUTE    &kp C_PP &kp ENTER  &lt NAV ESC  &kp RALT  &kp RGUI
+         &kp TAB         &kp Q   &kp W   &kp F     &kp P          &kp B                                 &kp J        &kp L        &kp U      &kp Y    &ud_sqt  &kp RC(RA(F13)) 
+         &kp LCTRL       &kp A   &kp R   &kp S     &kp T          &kp G                                 &kp M        &kp N        &kp E      &kp I    &kp O    &kp BSPC
+         &mt LSHFT LBRC  &kp Z   &kp X   &kp C     &kp D          &kp V                                 &kp K        &kp H        &kp COMMA  &kp DOT  &kp DEL  &mt RSHFT RBRC
+                                         &kp LALT  &lthp SYM ESC  &kp SPACE &kp C_MUTE         &kp C_PP &kp ENTER    &lt NAV ESC  &kp RALT   &kp RGUI
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_DN PG_UP>;
