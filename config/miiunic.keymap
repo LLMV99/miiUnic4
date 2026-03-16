@@ -1,8 +1,8 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
-#include <dt-bindings/zmk/ext_power.h>
 
 #define COLEMAK 0
 #define QWERTY 1
@@ -13,12 +13,10 @@
 #define ADJUST 6
 
 // additional caps word keys
-&caps_word {
-    continue-list = <UNDERSCORE MINUS LS(MINUS) UP DOWN LEFT RIGHT BSPC DEL>;
-};
+
+&caps_word { continue-list = <UNDERSCORE MINUS LS(MINUS) UP DOWN LEFT RIGHT BSPC DEL>; };
 
 / {
-
     behaviors {
         lthp: layer_tap_hold_preferred {
             compatible = "zmk,behavior-hold-tap";
@@ -39,6 +37,7 @@
 
     macros {
         // undead `
+
         ud_grave: ud_grave {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -48,6 +47,7 @@
         };
 
         // undead ~
+
         ud_tilde: ud_tilde {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -57,6 +57,7 @@
         };
 
         // undead ^
+
         ud_caret: ud_caret {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -66,6 +67,7 @@
         };
 
         // undead '
+
         ud_sqt: ud_sqt {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -75,6 +77,7 @@
         };
 
         // undead "
+
         ud_dqt: ud_dqt {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -84,6 +87,7 @@
         };
 
         // ascii arrow ->
+
         asc_arr: asc_arr {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -91,7 +95,6 @@
             tap-ms = <10>;
             bindings = <&kp MINUS &kp LS(DOT)>;
         };
-
     };
 
     combos {
@@ -99,13 +102,17 @@
 
         gm_capsword {
             bindings = <&caps_word>;
+
             // caps on G+M
+
             key-positions = <28 29>;
         };
 
         sticky_adjust {
             bindings = <&sl ADJUST>;
+
             // sticky adjust layer on LALT+RALT
+
             key-positions = <51 56>;
         };
     };
@@ -116,10 +123,11 @@
         colemak_layer {
             display-name = "Colemak";
             bindings = <
-         &kp TAB         &kp Q   &kp W   &kp F     &kp P          &kp B                                 &kp J        &kp L        &kp U      &kp Y    &ud_sqt  &kp ESC
-         &kp LCTRL       &kp A   &kp R   &kp S     &kp T          &kp G                                 &kp M        &kp N        &kp E      &kp I    &kp O    &kp BSPC
-         &mt LSHFT LBRC  &kp Z   &kp X   &kp C     &kp D          &kp V &kp C_MUTE             &kp C_PP &kp K        &kp H        &kp COMMA  &kp DOT  &kp DEL  &mt RSHFT RBRC
-                                            &kp LALT  &lthp SYM ESC  &kp SPACE                    &kp ENTER    &lt NAV ESC  &kp RALT   
+&kp TAB         &kp Q  &kp W  &kp F     &kp P               &kp B       &kp J      &kp L       &kp U          &kp Y    &ud_sqt     &kp ESC
+&kp LCTRL       &kp A  &kp R  &kp S     &kp T               &kp G       &kp M      &kp N       &kp E          &kp I    &kp O       &kp BSPC
+&mt LSHFT LBRC  &kp Z  &kp X  &kp C     &kp D               &kp V       &kp K      &kp H       &kp COMMA      &kp DOT  &kp DELETE  &kp RSHFT
+                              &kp LALT  &mt RSHFT LEFT_WIN  &kp SPACE   &kp ENTER  &kp K_FIND  &kp RIGHT_ALT
+                                                            &kp C_MUTE  &kp C_PP
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_DN PG_UP>;
@@ -128,10 +136,11 @@
         qwerty_layer {
             display-name = "QWERTY";
             bindings = <
-        &trans  &kp Q  &kp W   &kp E   &kp R   &kp T                   &kp Y   &kp U   &kp I      &kp O    &kp P     &trans
-        &trans  &kp A  &kp S   &kp D   &kp F   &kp G                   &kp H   &kp J   &kp K      &kp L    &kp SEMI  &trans
-        &trans  &kp Z  &kp X   &kp C   &kp V   &kp B                   &kp N   &kp M   &kp COMMA  &kp DOT  &trans    &trans
-                               &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp Q  &kp W  &kp E   &kp R   &kp T   &kp Y   &kp U   &kp I      &kp O    &kp P     &trans
+&trans  &kp A  &kp S  &kp D   &kp F   &kp G   &kp H   &kp J   &kp K      &kp L    &kp SEMI  &trans
+&trans  &kp Z  &kp X  &kp C   &kp V   &kp B   &kp N   &kp M   &kp COMMA  &kp DOT  &trans    &trans
+                      &trans  &trans  &trans  &trans  &trans  &trans
+                                      &trans  &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_DN PG_UP>;
@@ -140,49 +149,56 @@
         gaming_layer {
             display-name = "WASD";
             bindings = <
-        &kp ESC  &kp TAB    &kp Q   &kp W   &kp E   &kp R                   &trans  &trans  &trans  &trans  &trans  &trans
-        &trans   &kp LCTRL  &kp A   &kp S   &kp D   &kp F                   &trans  &trans  &trans  &trans  &trans  &trans
-        &trans   &kp LBRC   &kp Z   &kp X   &kp C   &kp V                   &trans  &trans  &trans  &trans  &trans  &trans
-                                    &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&kp ESC  &kp TAB    &kp Q  &kp W   &kp E   &kp R   &trans  &trans  &trans  &trans  &trans  &trans
+&trans   &kp LCTRL  &kp A  &kp S   &kp D   &kp F   &trans  &trans  &trans  &trans  &trans  &trans
+&trans   &kp LBRC   &kp Z  &kp X   &kp C   &kp V   &trans  &trans  &trans  &trans  &trans  &trans
+                           &trans  &trans  &trans  &trans  &trans  &trans
+                                           &trans  &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_DN PG_UP>;
         };
 
         // left mod
+
         sym_layer {
             display-name = "Symbols";
             bindings = <
-        &trans  &none   &kp BSLH   &kp PRCNT  &kp DLLR   &kp RA(LS(S))                  &none       &kp PIPE  &ud_caret  &kp SLASH  &kp RA(N5)  &kp F11
-        &trans  &none   &kp LPAR   &kp RPAR   &kp COLON  &asc_arr                       &none       &ud_dqt   &kp UNDER  &kp LBKT   &kp RBKT    &kp F12
-        &trans  &none   &ud_grave  &kp AT     &kp AMPS   &none                          &none       &kp HASH  &kp QMARK  &kp EXCL   &trans      &trans
-                                   &trans     &trans     &trans         &trans  &trans  &mo DOUBLE  &trans    &trans
+&trans  &none  &kp BSLH   &kp PRCNT  &kp DLLR   &kp RA(LS(S))  &none   &kp PIPE  &ud_caret   &kp SLASH  &kp RA(N5)  &kp F11
+&trans  &none  &kp LPAR   &kp RPAR   &kp COLON  &asc_arr       &none   &ud_dqt   &kp UNDER   &kp LBKT   &kp RBKT    &kp F12
+&trans  &none  &ud_grave  &kp AT     &kp AMPS   &none          &none   &kp HASH  &kp QMARK   &kp EXCL   &trans      &trans
+                          &trans     &trans     &trans         &trans  &trans    &mo DOUBLE
+                                                &trans         &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_DN PG_UP>;
         };
 
         // right mod
+
         nav_layer {
             display-name = "Num/Nav";
             bindings = <
-        &trans  &kp SLASH  &kp N7  &kp N8  &kp N9          &kp STAR                       &kp INS          &kp HOME   &kp END    &kp PSCRN  &none     &trans
-        &trans  &kp DOT    &kp N1  &kp N2  &kp N3          &kp EQUAL                      &kp LEFT         &kp DOWN   &kp UP     &kp RIGHT  &kp SEMI  &trans
-        &trans  &ud_tilde  &kp N4  &kp N5  &kp N6          &kp PLUS                       &kp PAUSE_BREAK  &kp PG_DN  &kp PG_UP  &none      &none     &trans
-                                   &trans  &mt LALT MINUS  &lt DOUBLE N0  &trans  &trans  &trans           &trans     &trans
+&trans  &kp SLASH  &kp N7  &kp N8  &kp N9          &kp STAR       &kp INS          &kp HOME   &kp END    &kp PSCRN  &none     &trans
+&trans  &kp DOT    &kp N1  &kp N2  &kp N3          &kp EQUAL      &kp LEFT         &kp DOWN   &kp UP     &kp RIGHT  &kp SEMI  &trans
+&trans  &ud_tilde  &kp N4  &kp N5  &kp N6          &kp PLUS       &kp PAUSE_BREAK  &kp PG_DN  &kp PG_UP  &none      &none     &trans
+                           &trans  &mt LALT MINUS  &lt DOUBLE N0  &trans           &trans     &trans
+                                                   &trans         &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp C_PREV C_NEXT>;
         };
 
         // double mod
+
         double_layer {
             display-name = "Double";
             bindings = <
-        &trans  &none  &none  &none   &none   &none                   &none   &none   &none   &none  &none  &trans
-        &trans  &none  &none  &none   &none   &none                   &none   &none   &none   &none  &none  &trans
-        &trans  &none  &none  &none   &none   &none                   &none   &none   &none   &none  &none  &trans
-                              &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  
+&trans  &none  &none  &none   &none   &none   &none   &none   &none   &none  &none  &trans
+&trans  &none  &none  &none   &none   &none   &none   &none   &none   &none  &none  &trans
+&trans  &none  &none  &none   &none   &none   &none   &none   &none   &none  &none  &trans
+                      &trans  &trans  &trans  &trans  &trans  &trans
+                                      &trans  &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp C_PREV C_NEXT>;
@@ -191,10 +207,11 @@
         adjust_layer {
             display-name = "Adjust";
             bindings = <
-       &none  &to QWERTY  &none         &to WASD      &ext_power EP_TOG  &none                         &none       &none       &none       &none         &none  &none
-       &none  &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2       &out OUT_TOG                  &none       &bt BT_NXT  &bt BT_PRV  &out OUT_TOG  &none  &none
-       &none  &none       &none         &to COLEMAK   &none              &none                         &none       &none       &none       &none         &none  &none
-                                        &trans        &trans             &trans        &trans  &trans  &trans      &trans      &trans
+&none  &to QWERTY  &none         &to WASD      &ext_power EP_TOG  &none         &none   &none       &none       &none         &none  &none
+&none  &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2       &out OUT_TOG  &none   &bt BT_NXT  &bt BT_PRV  &out OUT_TOG  &none  &none
+&none  &none       &none         &to COLEMAK   &none              &none         &none   &none       &none       &none         &none  &none
+                                 &trans        &trans             &trans        &trans  &trans      &trans
+                                                                  &trans        &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_DN PG_UP>;
